@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CodeMate Solutions – Your Success, Our Commitment</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300&display=swap" rel="stylesheet"/>
+<style>
+:root {
+  --bg: #ffffff;
+  --bg2: #f8faff;
+  --bg3: #f0f4ff;
+  --surface: #ffffff;
+  --surface2: #f4f7ff;
+  --blue: #2563eb;
+  --blue-light: #3b82f6;
+  --blue-pale: #eff6ff;
+  --indigo: #4f46e5;
+  --cyan: #0ea5e9;
+  --emerald: #10b981;
+  --amber: #f59e0b;
+  --rose: #f43f5e;
+  --text: #0f172a;
+  --text2: #334155;
+  --muted: #64748b;
+  --muted2: #94a3b8;
+  --border: #e2e8f0;
+  --border2: #cbd5e1;
+  --grad: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+  --grad2: linear-gradient(135deg, #0ea5e9 0%, #2563eb 100%);
+  --grad3: linear-gradient(135deg, #f59e0b 0%, #f43f5e 100%);
+  --shadow-sm: 0 1px 3px rgba(15,23,42,0.08), 0 1px 2px rgba(15,23,42,0.04);
+  --shadow: 0 4px 16px rgba(37,99,235,0.10), 0 2px 6px rgba(15,23,42,0.06);
+  --shadow-lg: 0 20px 60px rgba(37,99,235,0.15), 0 8px 24px rgba(15,23,42,0.08);
+  --radius: 18px;
+  --radius-sm: 10px;
+  --radius-lg: 28px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg2); }
+::-webkit-scrollbar-thumb { background: var(--blue-light); border-radius: 3px; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; width: 100%; z-index: 200;
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 6%;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 70px;
+  box-shadow: 0 1px 0 rgba(37,99,235,0.06);
+  transition: box-shadow .3s;
+}
+nav.scrolled { box-shadow: var(--shadow); }
+.nav-logo {
+  font-family: 'Fraunces', serif;
+  font-weight: 900; font-size: 1.45rem;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  text-decoration: none; letter-spacing: -0.02em;
+}
+.nav-links { display: flex; gap: 2.2rem; list-style: none; }
+.nav-links a {
+  color: var(--muted); text-decoration: none;
+  font-size: 0.875rem; font-weight: 600;
+  transition: color .2s; letter-spacing: 0.01em;
+}
+.nav-links a:hover { color: var(--blue); }
+.nav-right { display: flex; align-items: center; gap: 1rem; }
+.nav-cta {
+  background: var(--grad); color: #fff;
+  padding: 0.55rem 1.5rem; border-radius: 50px;
+  font-weight: 700; font-size: 0.85rem;
+  text-decoration: none; transition: box-shadow .2s, transform .2s;
+  box-shadow: 0 4px 14px rgba(37,99,235,0.35);
+  white-space: nowrap;
+}
+.nav-cta:hover { box-shadow: 0 8px 24px rgba(37,99,235,0.45); transform: translateY(-1px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; transition: .3s; }
+
+/* ── MOBILE MENU ── */
+.mobile-menu {
+  display: none; position: fixed; inset: 70px 0 0;
+  background: #fff; z-index: 199;
+  flex-direction: column; align-items: center; justify-content: center; gap: 1.8rem;
+  border-top: 1px solid var(--border);
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { color: var(--text2); text-decoration: none; font-size: 1.1rem; font-weight: 600; }
+.mobile-menu a:hover { color: var(--blue); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 100px 6% 60px;
+  position: relative; overflow: hidden;
+  background: linear-gradient(160deg, #ffffff 0%, #f0f4ff 50%, #ede9fe 100%);
+}
+.hero-blob {
+  position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; z-index: 0;
+}
+.blob1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(37,99,235,0.12) 0%, transparent 70%);
+  top: -100px; right: -100px;
+}
+.blob2 {
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(124,58,237,0.1) 0%, transparent 70%);
+  bottom: 0; left: -80px;
+}
+.blob3 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(14,165,233,0.1) 0%, transparent 70%);
+  top: 40%; left: 40%;
+}
+.hero-inner {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+  width: 100%;
+}
+.hero-left {}
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: var(--blue-pale); border: 1px solid rgba(37,99,235,0.2);
+  border-radius: 50px; padding: 0.4rem 1.1rem;
+  font-size: 0.78rem; color: var(--blue); font-weight: 700;
+  margin-bottom: 1.8rem; letter-spacing: 0.04em; text-transform: uppercase;
+  animation: fadeUp .5s ease both;
+}
+.hero-badge-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: var(--emerald);
+  animation: pulse 2s infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.7;transform:scale(1.3)} }
+h1 {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(2.6rem, 5vw, 4rem);
+  font-weight: 900; line-height: 1.08; letter-spacing: -0.03em;
+  animation: fadeUp .6s .1s ease both;
+  color: var(--text);
+}
+.grad-word {
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero-sub {
+  margin-top: 1.4rem; font-size: 1.05rem; color: var(--muted);
+  font-weight: 400; line-height: 1.75;
+  animation: fadeUp .6s .2s ease both; max-width: 480px;
+}
+.hero-btns {
+  margin-top: 2.2rem; display: flex; gap: 1rem; flex-wrap: wrap;
+  animation: fadeUp .6s .3s ease both;
+}
+.btn-primary {
+  background: var(--grad); color: #fff;
+  padding: 0.85rem 2.2rem; border-radius: 50px;
+  font-weight: 700; font-size: 0.95rem;
+  text-decoration: none; transition: box-shadow .2s, transform .2s;
+  box-shadow: 0 6px 20px rgba(37,99,235,0.35);
+  display: inline-flex; align-items: center; gap: 0.4rem;
+}
+.btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(37,99,235,0.4); }
+.btn-outline {
+  border: 2px solid var(--border2); color: var(--text2);
+  padding: 0.85rem 2.2rem; border-radius: 50px;
+  font-weight: 600; font-size: 0.95rem;
+  text-decoration: none; transition: border-color .2s, color .2s, background .2s;
+  display: inline-flex; align-items: center; gap: 0.4rem;
+}
+.btn-outline:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-pale); }
+.hero-stats {
+  margin-top: 3rem; display: flex; gap: 2.5rem; flex-wrap: wrap;
+  animation: fadeUp .6s .4s ease both;
+  padding-top: 2rem; border-top: 1px solid var(--border);
+}
+.stat-item { display: flex; flex-direction: column; }
+.stat-num {
+  font-family: 'Fraunces', serif; font-size: 2rem; font-weight: 900;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  letter-spacing: -0.03em; line-height: 1;
+}
+.stat-label { font-size: 0.78rem; color: var(--muted); font-weight: 500; margin-top: 0.2rem; }
+.hero-right { animation: fadeUp .7s .2s ease both; }
+.hero-card-stack { position: relative; }
+.hero-main-card {
+  background: #fff; border-radius: var(--radius-lg);
+  padding: 2.5rem; box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+.hero-card-top {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1.8rem;
+}
+.hc-avatar {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: var(--grad); display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; flex-shrink: 0;
+}
+.hc-name { font-weight: 700; font-size: 1rem; color: var(--text); }
+.hc-role { font-size: 0.8rem; color: var(--muted); }
+.hc-status {
+  margin-left: auto; display: flex; align-items: center; gap: 0.4rem;
+  background: #ecfdf5; border: 1px solid #a7f3d0;
+  border-radius: 50px; padding: 0.3rem 0.8rem;
+  font-size: 0.72rem; color: #065f46; font-weight: 600;
+}
+.hc-status::before { content:''; width:6px;height:6px;border-radius:50%;background:#10b981; animation:pulse 2s infinite; }
+.skill-list { display: flex; flex-direction: column; gap: 0.85rem; }
+.skill-row { display: flex; align-items: center; gap: 0.8rem; }
+.skill-name { font-size: 0.82rem; font-weight: 600; color: var(--text2); width: 100px; flex-shrink: 0; }
+.skill-bar { flex: 1; height: 8px; background: var(--bg3); border-radius: 4px; overflow: hidden; }
+.skill-fill { height: 100%; border-radius: 4px; background: var(--grad); transition: width 1.5s ease; }
+.skill-pct { font-size: 0.75rem; font-weight: 700; color: var(--blue); width: 36px; text-align: right; flex-shrink: 0; }
+.floating-tag {
+  position: absolute; background: #fff; border-radius: var(--radius-sm);
+  padding: 0.65rem 1rem; box-shadow: 0 8px 24px rgba(15,23,42,0.12);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.8rem; font-weight: 600; color: var(--text2);
+  animation: float 4s ease-in-out infinite;
+}
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+.ft1 { bottom: -18px; left: -28px; animation-delay: 0s; }
+.ft2 { top: -18px; right: -14px; animation-delay: 1.5s; }
+.ft-icon { font-size: 1rem; }
+
+/* ── SECTIONS ── */
+section { padding: 100px 6%; }
+.section-label {
+  font-size: 0.72rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--blue); font-weight: 800; margin-bottom: 0.6rem;
+}
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  font-weight: 900; line-height: 1.15; letter-spacing: -0.03em;
+  color: var(--text);
+}
+.section-sub { color: var(--muted); margin-top: 0.8rem; max-width: 520px; font-size: 0.98rem; line-height: 1.7; }
+.section-header { margin-bottom: 3.5rem; }
+.section-header.center { text-align: center; }
+.section-header.center .section-sub { margin: 0.8rem auto 0; }
+
+/* ── ABOUT ── */
+#about { background: var(--bg2); }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.about-desc { color: var(--text2); font-size: 0.95rem; line-height: 1.8; margin-bottom: 1.8rem; }
+.tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.tech-tag {
+  background: var(--blue-pale); border: 1px solid rgba(37,99,235,0.2);
+  color: var(--blue); padding: 0.35rem 1rem; border-radius: 50px;
+  font-size: 0.78rem; font-weight: 700; transition: background .2s, color .2s;
+}
+.tech-tag:hover { background: var(--blue); color: #fff; }
+.about-cards-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.about-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 1.8rem;
+  box-shadow: var(--shadow-sm); transition: box-shadow .3s, transform .3s;
+  position: relative; overflow: hidden;
+}
+.about-card:hover { box-shadow: var(--shadow); transform: translateY(-3px); }
+.about-card::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad);
+}
+.about-card-icon {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: var(--bg3); display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; margin-bottom: 1rem;
+}
+.about-card h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text); }
+.about-card p { color: var(--muted); font-size: 0.82rem; line-height: 1.6; }
+
+/* ── SERVICES ── */
+#services { background: #fff; }
+.services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.service-card {
+  background: var(--bg2); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 2rem;
+  transition: box-shadow .3s, transform .3s, border-color .3s;
+  position: relative; overflow: hidden; cursor: default;
+  group: '';
+}
+.service-card:hover {
+  box-shadow: var(--shadow-lg); transform: translateY(-5px);
+  border-color: rgba(37,99,235,0.25); background: #fff;
+}
+.service-num {
+  font-family: 'Fraunces', serif;
+  font-size: 3.5rem; font-weight: 900; letter-spacing: -0.05em;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  opacity: 0.12; position: absolute; top: 1rem; right: 1.2rem; line-height: 1;
+  transition: opacity .3s;
+}
+.service-card:hover .service-num { opacity: 0.22; }
+.service-icon {
+  width: 50px; height: 50px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.4rem; margin-bottom: 1.2rem;
+}
+.si-blue { background: linear-gradient(135deg, #dbeafe, #bfdbfe); }
+.si-indigo { background: linear-gradient(135deg, #e0e7ff, #c7d2fe); }
+.si-cyan { background: linear-gradient(135deg, #cffafe, #a5f3fc); }
+.si-emerald { background: linear-gradient(135deg, #d1fae5, #a7f3d0); }
+.si-amber { background: linear-gradient(135deg, #fef3c7, #fde68a); }
+.si-rose { background: linear-gradient(135deg, #ffe4e6, #fecdd3); }
+.service-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.5rem; color: var(--text); }
+.service-card p { color: var(--muted); font-size: 0.85rem; line-height: 1.65; }
+.service-arrow {
+  display: inline-flex; align-items: center; gap: 0.3rem;
+  margin-top: 1rem; font-size: 0.8rem; font-weight: 700;
+  color: var(--blue); opacity: 0; transition: opacity .3s;
+}
+.service-card:hover .service-arrow { opacity: 1; }
+
+/* ── PORTFOLIO ── */
+#portfolio { background: var(--bg2); }
+.portfolio-filter {
+  display: flex; gap: 0.6rem; flex-wrap: wrap; margin-bottom: 2.5rem;
+}
+.filter-btn {
+  background: var(--bg3); border: 1px solid var(--border);
+  color: var(--muted); padding: 0.45rem 1.1rem; border-radius: 50px;
+  font-size: 0.82rem; font-weight: 600; cursor: pointer;
+  transition: .2s; border: none;
+}
+.filter-btn.active, .filter-btn:hover { background: var(--blue); color: #fff; }
+.portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.portfolio-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow .3s, transform .3s;
+}
+.portfolio-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-5px); }
+.portfolio-thumb {
+  height: 180px; display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem; position: relative; overflow: hidden;
+}
+.pt-1 { background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%); }
+.pt-2 { background: linear-gradient(135deg, #065f46 0%, #10b981 100%); }
+.pt-3 { background: linear-gradient(135deg, #7c2d12 0%, #f97316 100%); }
+.pt-4 { background: linear-gradient(135deg, #4c1d95 0%, #8b5cf6 100%); }
+.pt-5 { background: linear-gradient(135deg, #164e63 0%, #06b6d4 100%); }
+.pt-6 { background: linear-gradient(135deg, #881337 0%, #f43f5e 100%); }
+.portfolio-overlay {
+  position: absolute; inset: 0; background: rgba(15,23,42,0.6);
+  display: flex; align-items: center; justify-content: center; gap: 0.7rem;
+  opacity: 0; transition: opacity .3s;
+}
+.portfolio-card:hover .portfolio-overlay { opacity: 1; }
+.ov-btn {
+  background: #fff; color: var(--blue); border-radius: 50px;
+  padding: 0.5rem 1.1rem; font-size: 0.78rem; font-weight: 700;
+  text-decoration: none; transition: background .2s;
+}
+.ov-btn:hover { background: var(--blue); color: #fff; }
+.portfolio-info { padding: 1.4rem 1.5rem; }
+.portfolio-info h3 { font-size: 1rem; font-weight: 700; color: var(--text); margin-bottom: 0.35rem; }
+.portfolio-info p { color: var(--muted); font-size: 0.82rem; line-height: 1.6; margin-bottom: 0.9rem; }
+.portfolio-tags { display: flex; flex-wrap: wrap; gap: 0.35rem; }
+.ptag {
+  background: var(--bg3); border: 1px solid var(--border);
+  color: var(--text2); font-size: 0.7rem; font-weight: 600;
+  padding: 0.2rem 0.65rem; border-radius: 50px;
+}
+
+/* ── PRICING ── */
+#pricing { background: #fff; }
+.pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.pricing-card {
+  background: var(--bg2); border: 2px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2.5rem;
+  position: relative; overflow: hidden; transition: transform .3s, box-shadow .3s;
+}
+.pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.pricing-card.featured {
+  background: var(--grad); border-color: transparent; color: #fff;
+  box-shadow: 0 24px 60px rgba(37,99,235,0.35);
+}
+.featured-badge {
+  position: absolute; top: 1.4rem; right: 1.4rem;
+  background: rgba(255,255,255,0.22); color: #fff;
+  font-size: 0.7rem; font-weight: 700; padding: 0.25rem 0.75rem;
+  border-radius: 50px; letter-spacing: 0.05em;
+}
+.pricing-card h3 {
+  font-size: 0.82rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 0.7rem;
+}
+.pricing-card.featured h3 { color: rgba(255,255,255,0.7); }
+.price {
+  font-family: 'Fraunces', serif; font-size: 3rem; font-weight: 900;
+  letter-spacing: -0.04em; color: var(--text); line-height: 1;
+}
+.pricing-card.featured .price { color: #fff; }
+.price-sub { font-size: 0.85rem; font-weight: 400; }
+.pricing-divider { height: 1px; background: var(--border); margin: 1.5rem 0; }
+.pricing-card.featured .pricing-divider { background: rgba(255,255,255,0.2); }
+.pricing-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+.pricing-features li {
+  display: flex; align-items: flex-start; gap: 0.6rem;
+  font-size: 0.87rem; color: var(--text2);
+}
+.pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.9); }
+.pricing-features li .check {
+  width: 18px; height: 18px; border-radius: 50%; background: var(--blue-pale);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem; color: var(--blue); flex-shrink: 0; margin-top: 2px; font-weight: 800;
+}
+.pricing-card.featured .pricing-features li .check { background: rgba(255,255,255,0.25); color: #fff; }
+.pricing-btn {
+  display: block; text-align: center; margin-top: 2rem;
+  padding: 0.85rem; border-radius: 50px; font-weight: 700; font-size: 0.9rem;
+  text-decoration: none; transition: .2s;
+}
+.pricing-btn.outline {
+  border: 2px solid var(--border2); color: var(--text);
+  background: #fff;
+}
+.pricing-btn.outline:hover { border-color: var(--blue); color: var(--blue); }
+.pricing-btn.filled {
+  background: rgba(255,255,255,0.22); color: #fff;
+  border: 2px solid rgba(255,255,255,0.3);
+}
+.pricing-btn.filled:hover { background: rgba(255,255,255,0.35); }
+
+/* ── CONTACT ── */
+#contact { background: var(--bg2); }
+.contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 5rem; align-items: start; }
+.contact-intro { color: var(--text2); font-size: 0.95rem; line-height: 1.75; margin-bottom: 2rem; }
+.contact-info { display: flex; flex-direction: column; gap: 1rem; }
+.contact-item {
+  display: flex; align-items: center; gap: 1rem;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-sm); padding: 1rem 1.2rem;
+  box-shadow: var(--shadow-sm); transition: box-shadow .2s;
+}
+.contact-item:hover { box-shadow: var(--shadow); }
+.contact-item-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.ci-blue { background: var(--blue-pale); }
+.ci-green { background: #ecfdf5; }
+.ci-amber { background: #fffbeb; }
+.contact-item-text strong { font-size: 0.75rem; color: var(--muted); display: block; font-weight: 600; }
+.contact-item-text a, .contact-item-text span {
+  color: var(--text); text-decoration: none; font-size: 0.9rem; font-weight: 600;
+}
+.contact-item-text a:hover { color: var(--blue); }
+.contact-form-wrap {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: var(--radius-lg); padding: 2.5rem;
+  box-shadow: var(--shadow);
+}
+.form-title {
+  font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.5rem;
+  letter-spacing: -0.02em; margin-bottom: 0.4rem; color: var(--text);
+}
+.form-sub { color: var(--muted); font-size: 0.85rem; margin-bottom: 1.8rem; }
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+.form-group label { font-size: 0.8rem; color: var(--text2); font-weight: 700; }
+.form-group input, .form-group textarea, .form-group select {
+  background: var(--bg2); border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); padding: 0.8rem 1rem;
+  color: var(--text); font-family: 'Plus Jakarta Sans', sans-serif; font-size: 0.88rem;
+  transition: border-color .2s, box-shadow .2s; width: 100%; outline: none;
+}
+.form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+  border-color: var(--blue); box-shadow: 0 0 0 3px rgba(37,99,235,0.1);
+}
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-submit {
+  background: var(--grad); color: #fff;
+  border: none; border-radius: 50px; padding: 0.95rem 2.2rem;
+  font-size: 0.95rem; font-weight: 700; cursor: pointer;
+  transition: box-shadow .2s, transform .2s; width: 100%;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  box-shadow: 0 6px 20px rgba(37,99,235,0.3);
+  display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+}
+.form-submit:hover { box-shadow: 0 12px 32px rgba(37,99,235,0.4); transform: translateY(-1px); }
+
+/* ── WHATSAPP ── */
+.whatsapp-float {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 300;
+  width: 60px; height: 60px; border-radius: 50%;
+  background: #25d366;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 30px rgba(37,211,102,0.5);
+  text-decoration: none; color: #fff;
+  transition: transform .2s, box-shadow .2s;
+  animation: wapulse 3s infinite;
+}
+@keyframes wapulse {
+  0%,100%{box-shadow:0 8px 30px rgba(37,211,102,0.5)}
+  50%{box-shadow:0 8px 50px rgba(37,211,102,0.7)}
+}
+.whatsapp-float:hover { transform: scale(1.12); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--text); color: #cbd5e1;
+  padding: 4rem 6% 2.5rem;
+}
+.footer-top {
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 3rem; margin-bottom: 3rem;
+}
+.footer-brand {}
+.footer-logo {
+  font-family: 'Fraunces', serif; font-weight: 900; font-size: 1.4rem;
+  background: var(--grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  display: inline-block; margin-bottom: 0.8rem;
+}
+.footer-brand p { font-size: 0.85rem; line-height: 1.7; color: #94a3b8; max-width: 220px; }
+.footer-links h4 {
+  font-size: 0.82rem; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+  color: #e2e8f0; margin-bottom: 1.2rem;
+}
+.footer-links ul { list-style: none; display: flex; flex-direction: column; gap: 0.65rem; }
+.footer-links ul a { color: #94a3b8; text-decoration: none; font-size: 0.85rem; transition: color .2s; }
+.footer-links ul a:hover { color: #fff; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08); padding-top: 2rem;
+  display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+}
+.footer-bottom p { font-size: 0.8rem; color: #64748b; }
+.social-links { display: flex; gap: 0.65rem; }
+.social-link {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center;
+  color: #94a3b8; text-decoration: none; font-size: 0.8rem; font-weight: 700;
+  transition: background .2s, color .2s;
+}
+.social-link:hover { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(26px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .65s ease, transform .65s ease; }
+.reveal.visible { opacity:1; transform:none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width:1100px) {
+  .services-grid, .portfolio-grid, .pricing-grid { grid-template-columns: repeat(2,1fr); }
+  .footer-top { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width:900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; }
+  .about-cards-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width:768px) {
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .services-grid, .portfolio-grid, .pricing-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+  .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  section { padding: 70px 5%; }
+  .hero-stats { gap: 1.5rem; }
+  .about-cards-grid { grid-template-columns: 1fr; }
+}
+@media (max-width:480px) {
+  h1 { font-size: 2.1rem; }
+  .hero-btns { flex-direction: column; }
+  .btn-primary, .btn-outline { text-align: center; justify-content: center; }
+  .portfolio-filter { gap: 0.4rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#hero" class="nav-logo">CodeMate Solutions</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="#contact" class="nav-cta">Get Free Quote →</a>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#about" onclick="toggleMenu()">About</a>
+  <a href="#services" onclick="toggleMenu()">Services</a>
+  <a href="#portfolio" onclick="toggleMenu()">Portfolio</a>
+  <a href="#pricing" onclick="toggleMenu()">Pricing</a>
+  <a href="#contact" onclick="toggleMenu()">Contact</a>
+  <a href="#contact" class="btn-primary" onclick="toggleMenu()">Get Free Quote →</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob blob1"></div>
+  <div class="hero-blob blob2"></div>
+  <div class="hero-blob blob3"></div>
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        Available for New Projects
+      </div>
+      <h1>
+        Your Success,<br>
+        <span class="grad-word">Our Commitment</span>
+      </h1>
+      <p class="hero-sub">
+        We craft modern websites, scalable ASP.NET Core applications & seamless React experiences that transform your ideas into powerful digital solutions.
+      </p>
+      <div class="hero-btns">
+        <a href="#contact" class="btn-primary">Start Your Project →</a>
+        <a href="#portfolio" class="btn-outline">View Our Work</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <span class="stat-num">6+</span>
+          <span class="stat-label">Projects Completed</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">5+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Client Satisfaction</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-card-stack">
+        <div class="floating-tag ft1">⚡ Fast Delivery · 3–7 Days</div>
+        <div class="floating-tag ft2">🏆 MCA Graduate Expert</div>
+        <div class="hero-main-card">
+          <div class="hero-card-top">
+            <div class="hc-avatar">👨‍💻</div>
+            <div>
+              <div class="hc-name">Amal P M</div>
+              <div class="hc-role">Full Stack Developer</div>
+            </div>
+            <div class="hc-status">Available</div>
+          </div>
+          <div class="skill-list">
+            <div class="skill-row">
+              <span class="skill-name">.Net Core</span>
+              <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+              <span class="skill-pct">100%</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-name">React.js</span>
+              <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+              <span class="skill-pct">100%</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-name">REST APIs</span>
+              <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+              <span class="skill-pct">100%</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-name">Angular</span>
+              <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+              <span class="skill-pct">100%</span>
+            </div>
+            <div class="skill-row">
+              <span class="skill-name">Node.js</span>
+              <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+              <span class="skill-pct">100%</span>
+            </div>
+  	    <div class="skill-row">
+              <span class="skill-name">Python</span>
+              <div class="skill-bar"><div class="skill-fill" style="width:100%"></div></div>
+              <span class="skill-pct">100%</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="reveal">
+      <div class="section-header">
+        <p class="section-label">About Us</p>
+        <h2 class="section-title">Passionate Developers,<br>Real Results</h2>
+      </div>
+      <p class="about-desc">
+        CodeMate Solutions is a software development company founded by an MCA graduate with hands-on expertise in enterprise-level applications and modern web technologies. We specialise in building tailored digital solutions — from business websites to complex enterprise modules.
+      </p>
+      <p class="about-desc">
+        Every project is approached with precision, clean architecture, and a client-first mindset. We don't just deliver code — we build long-term digital partnerships that grow with your business.
+      </p>
+      <div class="tech-tags">
+        <span class="tech-tag">ASP.NET Core</span>
+        <span class="tech-tag">React.js</span>
+        <span class="tech-tag">Angular</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">REST APIs</span>
+        <span class="tech-tag">SQL Server</span>
+        <span class="tech-tag">MongoDB</span>
+        <span class="tech-tag">MVC Architecture</span>
+        <span class="tech-tag">JavaScript</span>
+        <span class="tech-tag">WordPress</span>
+      </div>
+    </div>
+    <div class="about-cards-grid reveal">
+      <div class="about-card">
+        <div class="about-card-icon">⚡</div>
+        <h3>Fast Delivery</h3>
+        <p>Most projects completed within 3–7 business days.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🔒</div>
+        <h3>Secure Code</h3>
+        <p>Industry-standard security practices on every build.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">📱</div>
+        <h3>Fully Responsive</h3>
+        <p>Pixel-perfect on mobile, tablet, and desktop.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">🤝</div>
+        <h3>Ongoing Support</h3>
+        <p>Post-launch support and maintenance available.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-header center reveal">
+    <p class="section-label">What We Offer</p>
+    <h2 class="section-title">Our Services</h2>
+    <p class="section-sub">End-to-end digital solutions for businesses of all sizes — from startups to enterprise.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <span class="service-num">01</span>
+      <div class="service-icon si-blue">🌐</div>
+      <h3>Website Development</h3>
+      <p>Professional, responsive websites built to convert visitors into customers — from landing pages to multi-page business sites.</p>
+      <span class="service-arrow">Learn more →</span>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">02</span>
+      <div class="service-icon si-indigo">⚙️</div>
+      <h3>ASP.NET Core Development</h3>
+      <p>Robust, scalable enterprise applications built with ASP.NET Core MVC and clean backend architecture.</p>
+      <span class="service-arrow">Learn more →</span>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">03</span>
+      <div class="service-icon si-cyan">⚛️</div>
+      <h3>React Development</h3>
+      <p>Interactive, lightning-fast SPAs and dashboards using React.js with modern UI libraries.</p>
+      <span class="service-arrow">Learn more →</span>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">04</span>
+      <div class="service-icon si-emerald">🔌</div>
+      <h3>API Development</h3>
+      <p>Clean, documented RESTful APIs that power your apps, integrate third-party services, and scale effortlessly.</p>
+      <span class="service-arrow">Learn more →</span>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">05</span>
+      <div class="service-icon si-amber">🛠️</div>
+      <h3>Website Maintenance</h3>
+      <p>Regular updates, security patches, performance monitoring, and content management.</p>
+      <span class="service-arrow">Learn more →</span>
+    </div>
+    <div class="service-card reveal">
+      <span class="service-num">06</span>
+      <div class="service-icon si-rose">📊</div>
+      <h3>Custom Software Solutions</h3>
+      <p>Tailored portals, audit modules, and management systems built to your exact business workflow.</p>
+      <span class="service-arrow">Learn more →</span>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="section-header center reveal">
+    <p class="section-label">Our Work</p>
+    <h2 class="section-title">Portfolio</h2>
+    <p class="section-sub">A selection of real projects built with precision and purpose.</p>
+  </div>
+  <div class="portfolio-grid">
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb pt-1">
+        📋
+        <div class="portfolio-overlay">
+          <a href="#contact" class="ov-btn">View Details</a>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h3>Audit Module System</h3>
+        <p>Enterprise audit tracking with role-based access, report generation, and real-time dashboards.</p>
+        <div class="portfolio-tags">
+          <span class="ptag">ASP.NET Core</span>
+          <span class="ptag">SQL Server</span>
+          <span class="ptag">MVC</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb pt-2">
+        🏛️
+        <div class="portfolio-overlay">
+          <a href="#contact" class="ov-btn">View Details</a>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h3>ITC Portal</h3>
+        <p>Internal portal for managing tasks, documents, and employee operations across departments.</p>
+        <div class="portfolio-tags">
+          <span class="ptag">ASP.NET Core</span>
+          <span class="ptag">REST API</span>
+          <span class="ptag">Bootstrap</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb pt-3">
+        🌤️
+        <div class="portfolio-overlay">
+          <a href="#contact" class="ov-btn">View Details</a>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h3>Weather Calculator App</h3>
+        <p>Real-time weather app with third-party API integration, location search, and forecast views.</p>
+        <div class="portfolio-tags">
+          <span class="ptag">React.js</span>
+          <span class="ptag">REST API</span>
+          <span class="ptag">JavaScript</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb pt-4">
+        📈
+        <div class="portfolio-overlay">
+          <a href="#contact" class="ov-btn">View Details</a>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h3>React Analytics Dashboard</h3>
+        <p>Interactive dashboard with dynamic charts, data tables, and responsive layouts for business reporting.</p>
+        <div class="portfolio-tags">
+          <span class="ptag">React.js</span>
+          <span class="ptag">Chart.js</span>
+          <span class="ptag">CSS Grid</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb pt-5">
+        💡
+        <div class="portfolio-overlay">
+          <a href="#contact" class="ov-btn">View Details</a>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h3>Idea Management System</h3>
+        <p>Full-featured idea submission, categorisation, voting, and approval workflow for enterprise teams.</p>
+        <div class="portfolio-tags">
+          <span class="ptag">Angular</span>
+          <span class="ptag">SQL Server</span>
+          <span class="ptag">ASP.NET API</span>
+        </div>
+      </div>
+    </div>
+    <div class="portfolio-card reveal">
+      <div class="portfolio-thumb pt-6">
+        🛒
+        <div class="portfolio-overlay">
+          <a href="#contact" class="ov-btn">View Details</a>
+        </div>
+      </div>
+      <div class="portfolio-info">
+        <h3>E-Commerce Platform</h3>
+        <p>Full-stack e-commerce store with product management, cart, Stripe payments, and admin panel.</p>
+        <div class="portfolio-tags">
+          <span class="ptag">Node.js</span>
+          <span class="ptag">MongoDB</span>
+          <span class="ptag">Express</span>
+          <span class="ptag">React</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing">
+  <div class="section-header center reveal">
+    <p class="section-label">Transparent Pricing</p>
+    <h2 class="section-title">Simple, Affordable Plans</h2>
+    <p class="section-sub">No hidden fees. Clear pricing, premium quality.</p>
+  </div>
+  <div class="pricing-grid">
+    <div class="pricing-card reveal">
+      <h3>Starter</h3>
+      <div class="price">₹4,999<span class="price-sub"> / project</span></div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> 1-page website</li>
+        <li><span class="check">✓</span> Mobile responsive</li>
+        <li><span class="check">✓</span> Contact form</li>
+        <li><span class="check">✓</span> WhatsApp button</li>
+        <li><span class="check">✓</span> 3-day delivery</li>
+        <li><span class="check">✓</span> 1 revision round</li>
+      </ul>
+      <a href="#contact" class="pricing-btn outline">Get Started →</a>
+    </div>
+    <div class="pricing-card featured reveal">
+      <div class="featured-badge">⭐ Most Popular</div>
+      <h3>Business</h3>
+      <div class="price">₹9,999<span class="price-sub"> / project</span></div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> 5-page website</li>
+        <li><span class="check">✓</span> Mobile responsive</li>
+        <li><span class="check">✓</span> SEO optimised</li>
+        <li><span class="check">✓</span> Contact & WhatsApp</li>
+        <li><span class="check">✓</span> Portfolio section</li>
+        <li><span class="check">✓</span> 5-day delivery</li>
+        <li><span class="check">✓</span> 3 revision rounds</li>
+      </ul>
+      <a href="#contact" class="pricing-btn filled">Get Started →</a>
+    </div>
+    <div class="pricing-card reveal">
+      <h3>Enterprise</h3>
+      <div class="price">Custom<span class="price-sub"> quote</span></div>
+      <div class="pricing-divider"></div>
+      <ul class="pricing-features">
+        <li><span class="check">✓</span> ASP.NET Core / React / Angular</li>
+        <li><span class="check">✓</span> API development</li>
+        <li><span class="check">✓</span> Database design</li>
+        <li><span class="check">✓</span> Admin dashboard</li>
+        <li><span class="check">✓</span> Unlimited revisions</li>
+        <li><span class="check">✓</span> 3-month support</li>
+      </ul>
+      <a href="#contact" class="pricing-btn outline">Contact Us →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="reveal">
+      <div class="section-header">
+        <p class="section-label">Get In Touch</p>
+        <h2 class="section-title">Let's Build<br>Something Great</h2>
+      </div>
+      <p class="contact-intro">
+        Have a project in mind? We'd love to hear about it. Fill in the form and your message will be sent directly to our WhatsApp — expect a reply within a few hours.
+      </p>
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-item-icon ci-blue">📧</div>
+          <div class="contact-item-text">
+            <strong>Email</strong>
+            <a href="mailto:codemate.service@gmail.com">codemate.service@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon ci-green">💬</div>
+          <div class="contact-item-text">
+            <strong>WhatsApp</strong>
+            <a href="https://wa.me/916235279253" target="_blank">+91 62352 79253</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-item-icon ci-amber">🌍</div>
+          <div class="contact-item-text">
+            <strong>Location</strong>
+            <span>India — Remote Worldwide</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="contact-form-wrap">
+        <div class="form-title">Send us a message</div>
+        <div class="form-sub">We'll reply on WhatsApp within a few hours 🚀</div>
+        <div class="contact-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Full Name *</label>
+              <input type="text" id="fname" placeholder="Your full name"/>
+            </div>
+            <div class="form-group">
+              <label>Phone Number</label>
+              <input type="tel" id="fphone" placeholder="+91 00000 00000"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email Address *</label>
+            <input type="email" id="femail" placeholder="your@email.com"/>
+          </div>
+          <div class="form-group">
+            <label>Service Needed</label>
+            <select id="fservice">
+              <option value="">Select a service</option>
+              <option>Website Development</option>
+              <option>ASP.NET Core Development</option>
+              <option>React Development</option>
+              <option>Angular Development</option>
+              <option>Node.js / MongoDB Development</option>
+              <option>API Development</option>
+              <option>Website Maintenance</option>
+              <option>Custom Software</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Budget Range</label>
+            <select id="fbudget">
+              <option value="">Select budget</option>
+              <option>Under ₹5,000</option>
+              <option>₹5,000 – ₹15,000</option>
+              <option>₹15,000 – ₹50,000</option>
+              <option>₹50,000+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tell us about your project *</label>
+            <textarea id="fmessage" placeholder="Describe your project requirements, goals, and timeline..."></textarea>
+          </div>
+          <button class="form-submit" onclick="sendToWhatsApp()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            Send via WhatsApp
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/916235279253" class="whatsapp-float" target="_blank" title="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <div class="footer-logo">CodeMate Solutions</div>
+      <p>Your Success, Our Commitment. We build digital experiences that drive real business growth worldwide.</p>
+    </div>
+    <div class="footer-links">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Website Development</a></li>
+        <li><a href="#services">ASP.NET Core</a></li>
+        <li><a href="#services">React / Angular</a></li>
+        <li><a href="#services">Node.js / MongoDB</a></li>
+      </ul>
+    </div>
+    <div class="footer-links">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:codemate.service@gmail.com">codemate.service@gmail.com</a></li>
+        <li><a href="https://wa.me/916235279253">WhatsApp: +91 62352 79253</a></li>
+        <li><a href="#contact">Get Free Quote</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 CodeMate Solutions. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#" class="https://www.instagram.com/code_mate_official?igsh=MXdoMHBocHV4Mzc4bg==" title="Instagram">ig</a>
+      <a href="#" class="https://www.facebook.com/share/1DviUtDB2J/" title="LinkedIn">in</a>
+      <a href="#" class="social-link" title="Facebook">fb</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Mobile menu
+  function toggleMenu() {
+    document.getElementById('mobileMenu').classList.toggle('open');
+  }
+
+  // Nav shadow on scroll
+  window.addEventListener('scroll', () => {
+    document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const ro = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 90);
+        ro.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => ro.observe(el));
+
+  // Active nav
+  window.addEventListener('scroll', () => {
+    const sY = window.scrollY + 90;
+    document.querySelectorAll('section[id]').forEach(s => {
+      const link = document.querySelector(`.nav-links a[href="#${s.id}"]`);
+      if (link) link.style.color = sY >= s.offsetTop && sY < s.offsetTop + s.offsetHeight ? 'var(--blue)' : '';
+    });
+  });
+
+  // SEND TO WHATSAPP
+  function sendToWhatsApp() {
+    const name    = document.getElementById('fname').value.trim();
+    const phone   = document.getElementById('fphone').value.trim();
+    const email   = document.getElementById('femail').value.trim();
+    const service = document.getElementById('fservice').value;
+    const budget  = document.getElementById('fbudget').value;
+    const message = document.getElementById('fmessage').value.trim();
+
+    if (!name) { alert('Please enter your name.'); return; }
+    if (!email) { alert('Please enter your email.'); return; }
+    if (!message) { alert('Please describe your project.'); return; }
+
+    const text = `*New Project Inquiry — CodeMate Solutions* 🚀
+
+*Name:* ${name}
+*Phone:* ${phone || 'Not provided'}
+*Email:* ${email}
+*Service:* ${service || 'Not specified'}
+*Budget:* ${budget || 'Not specified'}
+
+*Project Details:*
+${message}
+
+---
+_Sent from codematesolutions.in_`;
+
+    const encoded = encodeURIComponent(text);
+    window.open(`https://wa.me/916235279253?text=${encoded}`, '_blank');
+
+    // Show success
+    const btn = document.querySelector('.form-submit');
+    btn.innerHTML = '✅ Opening WhatsApp...';
+    btn.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+    setTimeout(() => {
+      btn.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg> Send via WhatsApp`;
+      btn.style.background = '';
+    }, 3500);
+  }
+</script>
+</body>
+</html>
+
+
+<script>
+function sendToWhatsApp() {
+    const name = document.getElementById("fname").value;
+    const phone = document.getElementById("fphone").value;
+    const email = document.getElementById("femail").value;
+    const service = document.getElementById("fservice").value;
+    const budget = document.getElementById("fbudget").value;
+    const message = document.getElementById("fmessage").value;
+
+    const text =
+`*New Project Inquiry*
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email}
+Service: ${service}
+Budget: ${budget}
+
+Project Details:
+${message}`;
+
+    const whatsappUrl =
+        `https://wa.me/916235279253?text=${encodeURIComponent(text)}`;
+
+    window.open(whatsappUrl, "_blank");
+
+    // Clear all fields
+    document.getElementById("fname").value = "";
+    document.getElementById("fphone").value = "";
+    document.getElementById("femail").value = "";
+    document.getElementById("fservice").selectedIndex = 0;
+    document.getElementById("fbudget").selectedIndex = 0;
+    document.getElementById("fmessage").value = "";
+}
+
+// Clear fields whenever page loads
+window.onload = function () {
+    document.getElementById("fname").value = "";
+    document.getElementById("fphone").value = "";
+    document.getElementById("femail").value = "";
+    document.getElementById("fservice").selectedIndex = 0;
+    document.getElementById("fbudget").selectedIndex = 0;
+    document.getElementById("fmessage").value = "";
+};
+</script>
